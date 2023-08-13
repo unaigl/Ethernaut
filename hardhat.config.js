@@ -11,7 +11,30 @@ const privateKey = process.env.PRIVATE_KEY
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: "0.8.17",
+  solidity: {
+    compilers: [
+      {
+        version: "0.6.0",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 5000,
+            // details: { yul: false },
+          },
+        },
+      },
+      {
+        version: "0.8.17",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 5000,
+            // details: { yul: false },
+          },
+        },
+      },
+    ],
+  },
   networks: {
     polygon: {
       url: provider,

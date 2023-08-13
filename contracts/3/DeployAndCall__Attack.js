@@ -43,3 +43,7 @@ main()
     console.error(error)
     process.exit(1)
   })
+
+/* 
+  npx hardhat run contracts/3/DeployAndCall__Attack.js --network polygon
+*/
