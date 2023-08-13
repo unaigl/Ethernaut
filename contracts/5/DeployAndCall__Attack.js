@@ -6,7 +6,7 @@ const provider = new ethers.providers.JsonRpcProvider(_provider)
 const signer = new ethers.Wallet(privateKey, provider)
 
 /* CONTRACT NAME */
-const contractToDeploy = "AttackTelephone"
+const contractToDeploy = "AttackToken"
 
 /* DEPLOY + ATTACK */
 async function main() {
@@ -21,10 +21,20 @@ async function main() {
 
 main()
   .then(async (myContract) => {
-    const tx = await myContract.connect(signer).changeOwnerAttacker()
+    const tx = await myContract.connect(signer).transferAttacker()
     const res = await tx.wait()
     if (res.status === 0) {
       console.log("Transaction failed")
+
+      // Retrieve the revert reason from the res if available
+      if (res.logs && res.logs.length > 0) {
+        const errorLog = res.logs.find((log) => log.topics[0] === "0x08c379a0") // Keccak hash of "Error(string)"
+        if (errorLog) {
+          const errorData = errorLog.data
+          const reason = ethers.utils.toUtf8String(errorData.slice(4)) // Removing the 4-byte selector
+          console.log("Revert reason:", reason)
+        }
+      }
     } else if (res.status === 1) {
       console.log("Transaction succeeded")
     }
@@ -36,5 +46,5 @@ main()
   })
 
 /* 
-  npx hardhat run contracts/4/DeployAndCall__Attack.js --network polygon
+  npx hardhat run contracts/5/DeployAndCall__Attack.js --network polygon
 */
