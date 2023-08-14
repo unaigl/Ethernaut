@@ -46,5 +46,5 @@ main()
   })
 
 /* 
-  npx hardhat run contracts/5/DeployAndCall__Attack.js --network polygon
+  npx hardhat run contracts/5/DeployAndCall__Attack.js --network mumbai
 */
