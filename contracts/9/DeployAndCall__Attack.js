@@ -1,4 +1,3 @@
-const BigNumber = require("bignumber.js") // Import the BigNumber library
 require("dotenv").config()
 const {
   abi: ABIKing,

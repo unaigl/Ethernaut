@@ -1,8 +1,4 @@
-const BigNumber = require("bignumber.js") // Import the BigNumber library
 require("dotenv").config()
-const {
-  abi: ABIKing,
-} = require("../../artifacts/contracts/9/King.sol/King.json")
 const _provider = process.env.PROVIDER_MUMBAI
 const privateKey = process.env.PRIVATE_KEY
 

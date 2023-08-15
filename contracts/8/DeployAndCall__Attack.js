@@ -13,7 +13,7 @@ async function main() {
   /* CONTRACT NAME */
   const contractAddressToHack = "0xED2152434685558B0dDe2AE4a499A874A8cdB540"
 
-  const pass = await provider.getStorageAt(contractAddressToHack, 1)
+  const pass = await provider.getStorageAt(contractAddressToHack, 1) // provider.getStorageAt(ADDRESS, SLOT)
   console.log("pass", pass)
 
   /* delegation instance */
