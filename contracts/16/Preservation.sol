@@ -100,7 +100,7 @@ contract LibraryContract {
     // stores a timestamp
     uint storedTime;
 
-    /* @remind es posible que escriba en el contrato "" la 1era variable address, cuando en este contrato es typo uint256? */
+    /* @remind si es posible que se escriba en el contrato "Preservation" la 1era variable address (desde este contrato), cuando en este contrato es typo uint256 */
     function setTime(uint _time) public {
         storedTime = _time;
     }
