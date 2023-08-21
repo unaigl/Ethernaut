@@ -30,6 +30,7 @@ async function main() {
   /* we need bytes16 */
   /* bytes32 = '0x2092817fdcc05db2a7f48d7f601af9b7370bbe2afcb19050cd41c874bec8a30c' */
   /* para convertir a bytes16 -> '0x' + cada byte coje 2 caracteres */
+  /* cada opCode ocupa 1 byte = 2 caracteres */
   const _bytes16 = _bytes32.slice(0, 2 + 16 * 2)
   console.log("_bytes16", _bytes16)
 

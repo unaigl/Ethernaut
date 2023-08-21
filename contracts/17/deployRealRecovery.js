@@ -16,14 +16,6 @@ const signer = new ethers.Wallet(privateKey, provider)
 Se puede dar allowance de address0 a address0. Asi, no nos hace falta otra wallet
 */
 async function main() {
-  // const preservationAddress = "0x88279511049Db94172cce04E6253c48eacF565e6"
-  /* instance */
-  // const PreservationContract = new ethers.Contract(
-  //   preservationAddress,
-  //   ABIPreservation,
-  //   provider
-  // )
-
   /* CONTRACT NAME */
   const contractToDeploy = "RealRecovery"
   const MyContract = await ethers.getContractFactory(contractToDeploy)
@@ -38,8 +30,6 @@ async function main() {
     }
   )
   console.log("tx", tx)
-  // const res = await tx.wait()
-  // logTxResult(res)
 }
 
 main()
