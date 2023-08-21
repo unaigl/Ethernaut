@@ -18,7 +18,7 @@ async function main() {
   const MyContract = await ethers.getContractFactory(contractToDeploy)
   /* @remind la private key va en hardhat.config.js */
   const BytecodeContractContract = await MyContract.deploy(
-    "0x59a82B0967A0E373D372c6C734CE0e75264f5285"
+    "0x1A76d2a2f3bDD966f22801Ea45B65332C8151d81"
   )
   console.log("BytecodeContractContract", BytecodeContractContract.address)
 }
