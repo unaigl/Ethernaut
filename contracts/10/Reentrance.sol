@@ -3,7 +3,7 @@
 pragma solidity ^0.8.12;
 
 // import "openzeppelin-contracts-06/math/SafeMath.sol";
-import "./SafeMath.sol";
+import "../../lib/SafeMath.sol";
 
 /* obtenemos cuanto eth tiene el contrato y enviamos la misma cantidad */
 /* despues hacemos withdraw -> golpeara nuestro fallback -> hacemos re-entrancy attack --> RESULTADO hacemos withdraw 2 veces, cogiendo todo el eth del contrato objetivo */

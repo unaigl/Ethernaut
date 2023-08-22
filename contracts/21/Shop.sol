@@ -36,6 +36,10 @@ contract Shop {
         Buyer _buyer = Buyer(msg.sender);
 
         if (_buyer.price() >= price && !isSold) {
+            /* @remind aqui es donde se comete el fallo, podemnos usar esta info para hackear. Como resolverlo? 
+            1_ Nunca usar la misma funcion dos veces. Guardarlo en una variable
+            2_ ...?
+             */
             isSold = true;
             price = _buyer.price();
         }

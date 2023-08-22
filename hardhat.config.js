@@ -13,6 +13,16 @@ module.exports = {
   solidity: {
     compilers: [
       {
+        version: "0.8.17",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 5000,
+            // details: { yul: false },
+          },
+        },
+      },
+      {
         version: "0.6.0",
         settings: {
           optimizer: {
@@ -23,7 +33,7 @@ module.exports = {
         },
       },
       {
-        version: "0.8.17",
+        version: "0.5.2",
         settings: {
           optimizer: {
             enabled: true,
