@@ -49,5 +49,6 @@ module.exports = {
       url: provider,
       accounts: [privateKey],
     },
+    hardhat: {},
   },
 }

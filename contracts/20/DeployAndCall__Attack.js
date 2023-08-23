@@ -13,15 +13,15 @@ require("dotenv").config()
 
 /* DEPLOY + ATTACK */
 async function main() {
-  // /* CONTRACT NAME */
-  // const contractToDeploy = "AlienCodexAttack"
-  // const MyContract = await ethers.getContractFactory(contractToDeploy)
-  // /* @remind la private key va en hardhat.config.js */
-  // const AlienCodexAttackContract = await MyContract.deploy(
-  //   "0x22FEca8BCC282cfa6fe4B70A6Cf8513bf0E5d7C1",
-  //   { gasLimit: 10000000 }
-  // )
-  // console.log("AlienCodexAttackContract", AlienCodexAttackContract.address)
+  /* CONTRACT NAME */
+  const contractToDeploy = "DenialAttack"
+  const MyContract = await ethers.getContractFactory(contractToDeploy)
+  /* @remind la private key va en hardhat.config.js */
+  const DenialAttackContract = await MyContract.deploy(
+    "0x53d739bcc0e16BB0AC105FcB3EC767B82BB571C4",
+    { gasLimit: 10000000 }
+  )
+  console.log("DenialAttackContract", DenialAttackContract.address)
 }
 
 main()
@@ -33,5 +33,5 @@ main()
   })
 
 /* 
-  npx hardhat run contracts/19/DeployAndCall__Attack.js --network mumbai
+  npx hardhat run contracts/20/DeployAndCall__Attack.js --network mumbai
 */
